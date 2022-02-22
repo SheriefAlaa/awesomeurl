@@ -1,12 +1,14 @@
 using AwesomeUrl.Data;
 using AwesomeUrl.GraphQL.InputTypes;
 using AwesomeUrl.Models;
+using HotChocolate.AspNetCore.Authorization;
 
 namespace AwesomeUrl.GraphQL
 {
   public class Mutation
   {
 
+    [Authorize]
     [UseDbContext(typeof(ShortURLDbContext))]
     public async Task<ShortURL> AddShortURLAsync([ScopedService] ShortURLDbContext context, AddShortURLInput shortURLInput)
     {
